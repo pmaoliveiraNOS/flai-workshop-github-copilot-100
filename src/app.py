@@ -20,17 +20,62 @@ app.mount("/static", StaticFiles(directory=os.path.join(Path(__file__).parent,
           "static")), name="static")
 
 # In-memory activity database
-activities = [
-    {"id": 1, "name": "Basketball", "category": "sports", "participants": []},
-    {"id": 2, "name": "Painting Workshop", "category": "artistic", "participants": []},
-    {"id": 3, "name": "Python Bootcamp", "category": "intellectual", "participants": []},
-    {"id": 4, "name": "Tennis Tournament", "category": "sports", "participants": []},
-    {"id": 5, "name": "Swimming Competition", "category": "sports", "participants": []},
-    {"id": 6, "name": "Dance Class", "category": "artistic", "participants": []},
-    {"id": 7, "name": "Sculpture Studio", "category": "artistic", "participants": []},
-    {"id": 8, "name": "Machine Learning Seminar", "category": "intellectual", "participants": []},
-    {"id": 9, "name": "Chess Tournament", "category": "intellectual", "participants": []},
-]
+activities = {
+    "Chess Club": {
+        "description": "Learn strategies and compete in chess tournaments",
+        "schedule": "Fridays, 3:30 PM - 5:00 PM",
+        "max_participants": 12,
+        "participants": ["michael@mergington.edu", "daniel@mergington.edu"]
+    },
+    "Programming Class": {
+        "description": "Learn programming fundamentals and build software projects",
+        "schedule": "Tuesdays and Thursdays, 3:30 PM - 4:30 PM",
+        "max_participants": 20,
+        "participants": ["emma@mergington.edu", "sophia@mergington.edu"]
+    },
+    "Gym Class": {
+        "description": "Physical education and sports activities",
+        "schedule": "Mondays, Wednesdays, Fridays, 2:00 PM - 3:00 PM",
+        "max_participants": 30,
+        "participants": ["john@mergington.edu", "olivia@mergington.edu"]
+    },
+    "Tennis Team": {
+        "description": "Competitive tennis training and tournaments",
+        "schedule": "Mondays and Wednesdays, 4:00 PM - 5:30 PM",
+        "max_participants": 16,
+        "participants": []
+    },
+    "Swimming": {
+        "description": "Swimming lessons and competitive swimming",
+        "schedule": "Tuesdays and Thursdays, 5:00 PM - 6:00 PM",
+        "max_participants": 25,
+        "participants": []
+    },
+    "Art Studio": {
+        "description": "Painting, drawing, and sculpture techniques",
+        "schedule": "Wednesdays, 3:30 PM - 5:00 PM",
+        "max_participants": 18,
+        "participants": []
+    },
+    "Music Band": {
+        "description": "Learn instruments and perform in concerts",
+        "schedule": "Mondays and Fridays, 4:30 PM - 5:30 PM",
+        "max_participants": 20,
+        "participants": []
+    },
+    "Debate Team": {
+        "description": "Develop argumentation and public speaking skills",
+        "schedule": "Thursdays, 3:30 PM - 5:00 PM",
+        "max_participants": 14,
+        "participants": []
+    },
+    "Science Club": {
+        "description": "Explore STEM topics through experiments and projects",
+        "schedule": "Tuesdays, 4:00 PM - 5:00 PM",
+        "max_participants": 22,
+        "participants": []
+    }
+}
 
 
 @app.get("/")
