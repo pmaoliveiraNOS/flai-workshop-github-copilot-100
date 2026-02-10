@@ -20,26 +20,17 @@ app.mount("/static", StaticFiles(directory=os.path.join(Path(__file__).parent,
           "static")), name="static")
 
 # In-memory activity database
-activities = {
-    "Chess Club": {
-        "description": "Learn strategies and compete in chess tournaments",
-        "schedule": "Fridays, 3:30 PM - 5:00 PM",
-        "max_participants": 12,
-        "participants": ["michael@mergington.edu", "daniel@mergington.edu"]
-    },
-    "Programming Class": {
-        "description": "Learn programming fundamentals and build software projects",
-        "schedule": "Tuesdays and Thursdays, 3:30 PM - 4:30 PM",
-        "max_participants": 20,
-        "participants": ["emma@mergington.edu", "sophia@mergington.edu"]
-    },
-    "Gym Class": {
-        "description": "Physical education and sports activities",
-        "schedule": "Mondays, Wednesdays, Fridays, 2:00 PM - 3:00 PM",
-        "max_participants": 30,
-        "participants": ["john@mergington.edu", "olivia@mergington.edu"]
-    }
-}
+activities = [
+    {"id": 1, "name": "Basketball", "category": "sports", "participants": []},
+    {"id": 2, "name": "Painting Workshop", "category": "artistic", "participants": []},
+    {"id": 3, "name": "Python Bootcamp", "category": "intellectual", "participants": []},
+    {"id": 4, "name": "Tennis Tournament", "category": "sports", "participants": []},
+    {"id": 5, "name": "Swimming Competition", "category": "sports", "participants": []},
+    {"id": 6, "name": "Dance Class", "category": "artistic", "participants": []},
+    {"id": 7, "name": "Sculpture Studio", "category": "artistic", "participants": []},
+    {"id": 8, "name": "Machine Learning Seminar", "category": "intellectual", "participants": []},
+    {"id": 9, "name": "Chess Tournament", "category": "intellectual", "participants": []},
+]
 
 
 @app.get("/")
@@ -58,6 +49,10 @@ def signup_for_activity(activity_name: str, email: str):
     # Validate activity exists
     if activity_name not in activities:
         raise HTTPException(status_code=404, detail="Activity not found")
+
+    # Validate student is not already signed up
+    if email in activities[activity_name]["participants"]:
+        raise HTTPException(status_code=400, detail="Student is already signed up for this activity")
 
     # Get the specific activity
     activity = activities[activity_name]
